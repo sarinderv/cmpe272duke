@@ -1,16 +1,15 @@
 {
   "sampledev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-cmpe272duke-sampledev-201600-authRole",
-      "UnauthRoleArn": "arn:aws:iam::146838423249:role/amplify-cmpe272duke-sampledev-201600-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::146838423249:role/amplify-cmpe272duke-sampledev-201600-authRole",
+      "AuthRoleName": "amplify-cmpe272duke-sampledev-222102-authRole",
+      "UnauthRoleArn": "arn:aws:iam::146838423249:role/amplify-cmpe272duke-sampledev-222102-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::146838423249:role/amplify-cmpe272duke-sampledev-222102-authRole",
       "Region": "us-west-2",
-      "DeploymentBucketName": "amplify-cmpe272duke-sampledev-201600-deployment",
-      "UnauthRoleName": "amplify-cmpe272duke-sampledev-201600-unauthRole",
-      "StackName": "amplify-cmpe272duke-sampledev-201600",
-      "StackId": "arn:aws:cloudformation:us-west-2:146838423249:stack/amplify-cmpe272duke-sampledev-201600/8efef650-33af-11ec-9086-0ad706c0f501",
-      "AmplifyAppId": "d1nw5p8f8q0l5s",
-      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-cmpe272duke-sampledev-201600-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
+      "DeploymentBucketName": "amplify-cmpe272duke-sampledev-222102-deployment",
+      "UnauthRoleName": "amplify-cmpe272duke-sampledev-222102-unauthRole",
+      "StackName": "amplify-cmpe272duke-sampledev-222102",
+      "StackId": "arn:aws:cloudformation:us-west-2:146838423249:stack/amplify-cmpe272duke-sampledev-222102/afe71350-36e5-11ec-83a1-0abebd90ee6d",
+      "AmplifyAppId": "dd2ts0xoax3zk"
     },
     "categories": {
       "auth": {
@@ -19,16 +18,12 @@
       },
       "function": {
         "S3Triggerc8c424e6": {
-          "deploymentBucketName": "amplify-cmpe272duke-sampledev-201600-deployment",
-          "s3Key": "amplify-builds/S3Triggerc8c424e6-364a304f5a75372b4650-build.zip"
+          "deploymentBucketName": "amplify-cmpe272duke-sampledev-222102-deployment",
+          "s3Key": "amplify-builds/S3Triggerc8c424e6-445259374b4c44736479-build.zip"
         },
         "AdminQueriesf1ae536e": {
-          "deploymentBucketName": "amplify-cmpe272duke-sampledev-201600-deployment",
-          "s3Key": "amplify-builds/AdminQueriesf1ae536e-573171714e395a657a38-build.zip"
-        },
-        "jwtauth": {
-          "deploymentBucketName": "amplify-cmpe272duke-sampledev-201600-deployment",
-          "s3Key": "amplify-builds/jwtauth-537157736f2f72353771-build.zip"
+          "deploymentBucketName": "amplify-cmpe272duke-sampledev-222102-deployment",
+          "s3Key": "amplify-builds/AdminQueriesf1ae536e-636d62576e366f307175-build.zip"
         }
       }
     }
