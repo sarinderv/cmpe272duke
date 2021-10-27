@@ -1,15 +1,15 @@
 {
-  "sampledev": {
+  "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-cmpe272duke-sampledev-222102-authRole",
-      "UnauthRoleArn": "arn:aws:iam::146838423249:role/amplify-cmpe272duke-sampledev-222102-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::146838423249:role/amplify-cmpe272duke-sampledev-222102-authRole",
+      "AuthRoleName": "amplify-cmpe272duke-dev-224329-authRole",
+      "UnauthRoleArn": "arn:aws:iam::146838423249:role/amplify-cmpe272duke-dev-224329-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::146838423249:role/amplify-cmpe272duke-dev-224329-authRole",
       "Region": "us-west-2",
-      "DeploymentBucketName": "amplify-cmpe272duke-sampledev-222102-deployment",
-      "UnauthRoleName": "amplify-cmpe272duke-sampledev-222102-unauthRole",
-      "StackName": "amplify-cmpe272duke-sampledev-222102",
-      "StackId": "arn:aws:cloudformation:us-west-2:146838423249:stack/amplify-cmpe272duke-sampledev-222102/afe71350-36e5-11ec-83a1-0abebd90ee6d",
-      "AmplifyAppId": "dd2ts0xoax3zk"
+      "DeploymentBucketName": "amplify-cmpe272duke-dev-224329-deployment",
+      "UnauthRoleName": "amplify-cmpe272duke-dev-224329-unauthRole",
+      "StackName": "amplify-cmpe272duke-dev-224329",
+      "StackId": "arn:aws:cloudformation:us-west-2:146838423249:stack/amplify-cmpe272duke-dev-224329/d23b58a0-36e8-11ec-b7d6-0af1a1cb706d",
+      "AmplifyAppId": "d1r8y48urc0zl0"
     },
     "categories": {
       "auth": {
@@ -18,11 +18,11 @@
       },
       "function": {
         "S3Triggerc8c424e6": {
-          "deploymentBucketName": "amplify-cmpe272duke-sampledev-222102-deployment",
+          "deploymentBucketName": "amplify-cmpe272duke-dev-224329-deployment",
           "s3Key": "amplify-builds/S3Triggerc8c424e6-445259374b4c44736479-build.zip"
         },
         "AdminQueriesf1ae536e": {
-          "deploymentBucketName": "amplify-cmpe272duke-sampledev-222102-deployment",
+          "deploymentBucketName": "amplify-cmpe272duke-dev-224329-deployment",
           "s3Key": "amplify-builds/AdminQueriesf1ae536e-636d62576e366f307175-build.zip"
         }
       }
