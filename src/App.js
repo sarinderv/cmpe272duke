@@ -114,7 +114,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Team Duke - CMPE272 - Human Resources Management App</h1>
+      <h1>Team Duke - CMPE272 - Human Resources Management App HELP ME!</h1>
       { userInfo()}
       <hr />
       <input
