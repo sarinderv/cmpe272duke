@@ -1,60 +1,66 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createFile = /* GraphQL */ `
-  mutation CreateFile(
-    $input: CreateFileInput!
-    $condition: ModelFileConditionInput
+export const createEmployee = /* GraphQL */ `
+  mutation CreateEmployee(
+    $input: CreateEmployeeInput!
+    $condition: ModelEmployeeConditionInput
   ) {
-    createFile(input: $input, condition: $condition) {
+    createEmployee(input: $input, condition: $condition) {
       id
-      fileName
-      fileUploadTime
-      description
-      contentType
-      userFirstName
-      userLastName
+      firstName
+      lastName
+      title
+      department
+      startDate
+      phone
+      address
+      emergencyContactName
+      emergencyContactPhone
       createdAt
       updatedAt
-      owner
     }
   }
 `;
-export const updateFile = /* GraphQL */ `
-  mutation UpdateFile(
-    $input: UpdateFileInput!
-    $condition: ModelFileConditionInput
+export const updateEmployee = /* GraphQL */ `
+  mutation UpdateEmployee(
+    $input: UpdateEmployeeInput!
+    $condition: ModelEmployeeConditionInput
   ) {
-    updateFile(input: $input, condition: $condition) {
+    updateEmployee(input: $input, condition: $condition) {
       id
-      fileName
-      fileUploadTime
-      description
-      contentType
-      userFirstName
-      userLastName
+      firstName
+      lastName
+      title
+      department
+      startDate
+      phone
+      address
+      emergencyContactName
+      emergencyContactPhone
       createdAt
       updatedAt
-      owner
     }
   }
 `;
-export const deleteFile = /* GraphQL */ `
-  mutation DeleteFile(
-    $input: DeleteFileInput!
-    $condition: ModelFileConditionInput
+export const deleteEmployee = /* GraphQL */ `
+  mutation DeleteEmployee(
+    $input: DeleteEmployeeInput!
+    $condition: ModelEmployeeConditionInput
   ) {
-    deleteFile(input: $input, condition: $condition) {
+    deleteEmployee(input: $input, condition: $condition) {
       id
-      fileName
-      fileUploadTime
-      description
-      contentType
-      userFirstName
-      userLastName
+      firstName
+      lastName
+      title
+      department
+      startDate
+      phone
+      address
+      emergencyContactName
+      emergencyContactPhone
       createdAt
       updatedAt
-      owner
     }
   }
 `;

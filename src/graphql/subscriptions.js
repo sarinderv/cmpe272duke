@@ -1,51 +1,57 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateFile = /* GraphQL */ `
-  subscription OnCreateFile($owner: String) {
-    onCreateFile(owner: $owner) {
+export const onCreateEmployee = /* GraphQL */ `
+  subscription OnCreateEmployee {
+    onCreateEmployee {
       id
-      fileName
-      fileUploadTime
-      description
-      contentType
-      userFirstName
-      userLastName
+      firstName
+      lastName
+      title
+      department
+      startDate
+      phone
+      address
+      emergencyContactName
+      emergencyContactPhone
       createdAt
       updatedAt
-      owner
     }
   }
 `;
-export const onUpdateFile = /* GraphQL */ `
-  subscription OnUpdateFile($owner: String) {
-    onUpdateFile(owner: $owner) {
+export const onUpdateEmployee = /* GraphQL */ `
+  subscription OnUpdateEmployee {
+    onUpdateEmployee {
       id
-      fileName
-      fileUploadTime
-      description
-      contentType
-      userFirstName
-      userLastName
+      firstName
+      lastName
+      title
+      department
+      startDate
+      phone
+      address
+      emergencyContactName
+      emergencyContactPhone
       createdAt
       updatedAt
-      owner
     }
   }
 `;
-export const onDeleteFile = /* GraphQL */ `
-  subscription OnDeleteFile($owner: String) {
-    onDeleteFile(owner: $owner) {
+export const onDeleteEmployee = /* GraphQL */ `
+  subscription OnDeleteEmployee {
+    onDeleteEmployee {
       id
-      fileName
-      fileUploadTime
-      description
-      contentType
-      userFirstName
-      userLastName
+      firstName
+      lastName
+      title
+      department
+      startDate
+      phone
+      address
+      emergencyContactName
+      emergencyContactPhone
       createdAt
       updatedAt
-      owner
     }
   }
 `;
