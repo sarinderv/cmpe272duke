@@ -1,5 +1,5 @@
 projects:
-  employee:
+  cmpe272duke:
     schemaPath: src/graphql/schema.json
     includes:
       - src/graphql/**/*.js

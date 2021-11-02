@@ -43,7 +43,7 @@
     }
   },
   "api": {
-    "employee": {
+    "cmpe272duke": {
       "service": "AppSync",
       "providerPlugin": "awscloudformation",
       "output": {
