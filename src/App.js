@@ -7,7 +7,6 @@ import SideNav from './components/SideNav';
 import Profile from './pages/Profile';
 import Payroll from './pages/Payroll';
 import Timesheets from './pages/Timesheets';
-import OldStuff from './pages/OldStuff';
 
 function App() {
 
@@ -67,7 +66,6 @@ function App() {
           <Route path='/' exact component={Profile} />
           <Route path='/payroll' component={Payroll} />
           <Route path='/timesheets' component={Timesheets} />
-          <Route path='/oldstuff' component={OldStuff} />
         </Switch>
       </Router>
 
