@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { AmplifySignOut } from '@aws-amplify/ui-react';
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
-import * as IoIcons from 'react-icons/io';
 
 const SideNav = (props) => {
 
@@ -25,13 +24,7 @@ const SideNav = (props) => {
             path: '/timesheets',
             icon: <FaIcons.FaCalendarAlt />,
             cName: 'nav-text'
-        },
-        {
-            title: 'OldStuff',
-            path: '/oldstuff',
-            icon: <FaIcons.FaExclamation />,
-            cName: 'nav-text'
-        },
+        }
     ];
 
     const [sidebar, setSidebar] = useState(false);
