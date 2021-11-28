@@ -1,17 +1,34 @@
-type File @model
-  @auth(
-    rules: [
-      # allow any signed-in user to crud records
-      { allow: owner }
-      # Admin users can access any operation.
-      { allow: groups, groups: ["Admins"] }
-    ]
-  ) {
+type Payroll @model {
   id: ID!
-  fileName: String!
-  fileUploadTime: AWSDateTime!
-  description: String
-  contentType: String
-  userFirstName: String
-  userLastName: String
+  employeeId: ID!
+  providentFund: ID!
+  basicSalary: ID!
+  allowance : ID!
+  tax : ID!
+  grossSalary : ID!
+  netSalary : ID!
+  employee: Employee @connection(fields: ["employeeId"])
+
+}
+
+type HourlyRate @model {
+  id: ID!
+  employeeId: ID!
+  ratePerHour: ID!
+  employee: Employee @connection(fields: ["employeeId"])
+
+}
+
+type Employee @model {
+    id: ID!
+    firstName: String!
+    lastName: String!
+    title: String!
+    department: String!
+    startDate: AWSDateTime
+    phone: String
+    address: String
+    emergencyContactName: String
+    emergencyContactPhone: String
+
 }
