@@ -43,21 +43,6 @@
     }
   },
   "api": {
-    "fileapp": {
-      "service": "AppSync",
-      "providerPlugin": "awscloudformation",
-      "output": {
-        "authConfig": {
-          "defaultAuthentication": {
-            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
-            "userPoolConfig": {
-              "userPoolId": "authcmpe272duke6173a9cd"
-            }
-          },
-          "additionalAuthenticationProviders": []
-        }
-      }
-    },
     "AdminQueries": {
       "service": "API Gateway",
       "providerPlugin": "awscloudformation",
@@ -79,6 +64,21 @@
           ]
         }
       ]
+    },
+    "cmpe272duke": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "API_KEY",
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 7
+            }
+          },
+          "additionalAuthenticationProviders": []
+        }
+      }
     }
   },
   "function": {

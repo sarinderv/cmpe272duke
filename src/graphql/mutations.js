@@ -1,6 +1,189 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createPayroll = /* GraphQL */ `
+  mutation CreatePayroll(
+    $input: CreatePayrollInput!
+    $condition: ModelPayrollConditionInput
+  ) {
+    createPayroll(input: $input, condition: $condition) {
+      id
+      employeeId
+      providentFund
+      basicSalary
+      allowance
+      tax
+      grossSalary
+      netSalary
+      employee {
+        id
+        firstName
+        lastName
+        title
+        department
+        startDate
+        phone
+        address
+        emergencyContactName
+        emergencyContactPhone
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updatePayroll = /* GraphQL */ `
+  mutation UpdatePayroll(
+    $input: UpdatePayrollInput!
+    $condition: ModelPayrollConditionInput
+  ) {
+    updatePayroll(input: $input, condition: $condition) {
+      id
+      employeeId
+      providentFund
+      basicSalary
+      allowance
+      tax
+      grossSalary
+      netSalary
+      employee {
+        id
+        firstName
+        lastName
+        title
+        department
+        startDate
+        phone
+        address
+        emergencyContactName
+        emergencyContactPhone
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deletePayroll = /* GraphQL */ `
+  mutation DeletePayroll(
+    $input: DeletePayrollInput!
+    $condition: ModelPayrollConditionInput
+  ) {
+    deletePayroll(input: $input, condition: $condition) {
+      id
+      employeeId
+      providentFund
+      basicSalary
+      allowance
+      tax
+      grossSalary
+      netSalary
+      employee {
+        id
+        firstName
+        lastName
+        title
+        department
+        startDate
+        phone
+        address
+        emergencyContactName
+        emergencyContactPhone
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createHourlyRate = /* GraphQL */ `
+  mutation CreateHourlyRate(
+    $input: CreateHourlyRateInput!
+    $condition: ModelHourlyRateConditionInput
+  ) {
+    createHourlyRate(input: $input, condition: $condition) {
+      id
+      employeeId
+      ratePerHour
+      employee {
+        id
+        firstName
+        lastName
+        title
+        department
+        startDate
+        phone
+        address
+        emergencyContactName
+        emergencyContactPhone
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateHourlyRate = /* GraphQL */ `
+  mutation UpdateHourlyRate(
+    $input: UpdateHourlyRateInput!
+    $condition: ModelHourlyRateConditionInput
+  ) {
+    updateHourlyRate(input: $input, condition: $condition) {
+      id
+      employeeId
+      ratePerHour
+      employee {
+        id
+        firstName
+        lastName
+        title
+        department
+        startDate
+        phone
+        address
+        emergencyContactName
+        emergencyContactPhone
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteHourlyRate = /* GraphQL */ `
+  mutation DeleteHourlyRate(
+    $input: DeleteHourlyRateInput!
+    $condition: ModelHourlyRateConditionInput
+  ) {
+    deleteHourlyRate(input: $input, condition: $condition) {
+      id
+      employeeId
+      ratePerHour
+      employee {
+        id
+        firstName
+        lastName
+        title
+        department
+        startDate
+        phone
+        address
+        emergencyContactName
+        emergencyContactPhone
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const createEmployee = /* GraphQL */ `
   mutation CreateEmployee(
     $input: CreateEmployeeInput!

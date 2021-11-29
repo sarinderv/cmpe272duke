@@ -15,14 +15,14 @@ export type AmplifyDependentResourcesAttributes = {
         }
     },
     "api": {
-        "fileapp": {
-            "GraphQLAPIIdOutput": "string",
-            "GraphQLAPIEndpointOutput": "string"
-        },
         "AdminQueries": {
             "RootUrl": "string",
             "ApiName": "string",
             "ApiId": "string"
+        },
+        "cmpe272duke": {
+            "GraphQLAPIIdOutput": "string",
+            "GraphQLAPIEndpointOutput": "string"
         }
     },
     "function": {
