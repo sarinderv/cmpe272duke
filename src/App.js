@@ -8,6 +8,7 @@ import Profile from './pages/Profile';
 import Payroll from './pages/Payroll';
 import Timesheets from './pages/Timesheets';
 import CreatePayroll from './pages/CreatePayroll';
+import EmployeeNotFound from './pages/EmployeeNotFound';
 
 function App() {
 
@@ -68,6 +69,7 @@ function App() {
           <Route path='/payroll' component={Payroll} />
           <Route path='/timesheets' component={Timesheets} />
           <Route path='/createpayroll' component={CreatePayroll} />
+          <Route path='/employeenotfound' component={EmployeeNotFound} />
         </Switch>
       </Router>
 

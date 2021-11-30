@@ -34,7 +34,7 @@ export default function Profile() {
         console.log(userName);
         const apiData = await API.graphql({ query: getEmployee, variables: { id: userName } } );
         if (apiData.data.getEmployee == null) {
-            console.log("XXXX");
+            history.push("/employeenotfound");
         }
         console.log(apiData.data.getEmployee);
         setEmployee(apiData.data.getEmployee);
