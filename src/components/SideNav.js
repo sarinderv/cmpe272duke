@@ -30,6 +30,12 @@ const SideNav = (props) => {
             path: '/createpayroll',
             icon: <FaIcons.FaCalendarAlt />,
             cName: 'nav-text'
+        },
+        {
+            title: 'Employee for Manager',
+            path: '/employee',
+            icon: <FaIcons.FaCalendarAlt />,
+            cName: 'nav-text'
         }
     ];
 

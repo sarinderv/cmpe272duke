@@ -9,6 +9,7 @@ import Payroll from './pages/Payroll';
 import Timesheets from './pages/Timesheets';
 import CreatePayroll from './pages/CreatePayroll';
 import EmployeeNotFound from './pages/EmployeeNotFound';
+import Employee from './pages/Employee';
 
 function App() {
 
@@ -70,6 +71,7 @@ function App() {
           <Route path='/timesheets' component={Timesheets} />
           <Route path='/createpayroll' component={CreatePayroll} />
           <Route path='/employeenotfound' component={EmployeeNotFound} />
+          <Route path='/employee' component={Employee} />
         </Switch>
       </Router>
 
