@@ -8,6 +8,8 @@ import { API } from 'aws-amplify';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import { listTimesheetByEmployee} from '../graphql/customQueries';
 import "./Timesheet.css";
+import UpdateTimesheet from "./UpdateTimesheet";
+import CreateTimesheet from "./CreateTimesheet";
 import { createTimesheet, deleteTimesheet } from '../graphql/mutations';
 import { Link } from 'react-router-dom';
 
@@ -16,6 +18,9 @@ export default function Timesheets() {
     const [userData, setUserData] = useState({ payload: { username: '' } });
     const [errorMessages, setErrorMessages] = useState([]);
     const [timesheets, setTimesheet]= useState([]);
+    const [selectedTimesheet, setselectedTimesheet] = useState([]);
+    const [updateModalShow, setUpdateModalShow] = React.useState(false);
+    const [createModalShow, setCreateModalShow] = React.useState(false);
     const [fields, handleFieldChange] = useFormFields({
       hours:"",
       fillDate:""
@@ -36,6 +41,14 @@ export default function Timesheets() {
         bgColor: "rgb(238, 193, 213)" 
       };
     
+      function openUpdateTimesheetModal(timesheet) {
+        setselectedTimesheet(timesheet);
+        setUpdateModalShow(true);
+      }
+      function openCreateTimesheetModal() {
+        setCreateModalShow(true);
+      }
+
       async function fetchUserData() {
         await Auth.currentAuthenticatedUser()
           .then((userSession) => {
@@ -82,12 +95,11 @@ export default function Timesheets() {
     function renderTimesheet(){
         return (
             <div className='tableTimesheet'>
-                <h3 style={{textAlign:'left'}}>Employee Name:</h3>
-                <h3 style={{textAlign:'left'}}>Employee ID: </h3>
 
-            <table className="table table-striped" style={{ marginTop: 20 }}>
+            <table className="table striped bordered hover" style={{ marginTop: 20 }}>
                     <thead>
                         <tr>
+                            <th>Employee ID</th>
                             <th>Hours of work</th>
                             <th>Date </th>
                         </tr>
@@ -96,19 +108,32 @@ export default function Timesheets() {
                     {
                     timesheets.map(timesheet => (
                             <tr key={timesheet.id || timesheet.fillDate} >
+                            <td>{timesheet.id}</td>
                             <td>{timesheet.hours}</td>
                             <td>{timesheet.fillDate}</td>
-                            {/* <td> {appointment.doctor != null ? appointment.doctor.firstName +" "+appointment.doctor.lastName : ""}</td>
-                            <td>{appointment.description != null ?  appointment.description : ""} </td> */}
-                            <td><button onClick={() => deleteTimesheetById(timesheet)}>Delete</button></td>
+                            <td>
+                            <Button variant="primary" size="sm" onClick={() => openUpdateTimesheetModal(timesheet)}>Edit</Button>{' '}
+                            <Button onClick={() => deleteTimesheetById(timesheet)}>Delete</Button></td>
                             
-                            </tr>
+                            </tr> 
                         ))
                         }
                     </tbody>
                 </table>
+                <Button variant="success" size="sm" onClick={() => openCreateTimesheetModal()}>Create</Button>
+                {/* <UpdateTimesheet
+                  show={updateModalShow}
+                  timesheet={selectedTimesheet}
+                  onUpdated={() => fetchTimesheetData(selectedTimesheet.employeeID)}
+                  onHide={() => setUpdateModalShow(false)} 
+                />  */}
+             <CreateTimesheet
+                  show={createModalShow}
+                  onUpdated={() => fetchTimesheetData()}
+                  onHide={() => setCreateModalShow(false)}
+            />
             </div>
         );
     }
-    return <div className="timesheets"> <h1> TIME SHEET</h1> {renderTimesheet()} </div>;
+    return <div className="Timesheets"> <h1> TIME SHEET</h1> {renderTimesheet()} </div>;
 }

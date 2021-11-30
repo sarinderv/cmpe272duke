@@ -1,0 +1,10 @@
+
+.createtimesheet {
+    padding: 60px 0;
+}
+
+.createtimesheet form-control {
+    margin: 0 auto;
+    max-width: 320px;
+    width: 500px !important;
+}

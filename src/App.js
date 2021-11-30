@@ -11,6 +11,7 @@ import CreatePayroll from './pages/CreatePayroll';
 import EmployeeNotFound from './pages/EmployeeNotFound';
 import Employee from './pages/Employee';
 import EmployeeHR from './pages/EmployeeHr';
+import CreateTimesheet from './pages/CreateTimesheet';
 
 function App() {
 
@@ -71,6 +72,7 @@ function App() {
           <Route path='/payroll' component={Payroll} />
           <Route path='/timesheets' component={Timesheets} />
           <Route path='/createpayroll' component={CreatePayroll} />
+          <Route path='/createtimesheet' component={CreateTimesheet} />
           <Route path='/employeenotfound' component={EmployeeNotFound} />
           <Route path='/employee' component={Employee} />
           <Route path='/employeehr' component={EmployeeHR} />
