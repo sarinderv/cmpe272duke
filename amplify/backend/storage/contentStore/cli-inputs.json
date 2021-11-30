@@ -1,0 +1,20 @@
+{
+  "resourceName": "contentStore",
+  "bucketName": "cmpe272duke-content-store",
+  "policyUUID": "0e86c920",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {
+    "Admins": [
+      "CREATE_AND_UPDATE",
+      "READ",
+      "DELETE"
+    ]
+  }
+}

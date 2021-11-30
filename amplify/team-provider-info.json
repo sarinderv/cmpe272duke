@@ -28,17 +28,17 @@
       }
     }
   },
-  "dev": {
+  "master": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-cmpe272duke-dev-91943-authRole",
-      "UnauthRoleArn": "arn:aws:iam::146838423249:role/amplify-cmpe272duke-dev-91943-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::146838423249:role/amplify-cmpe272duke-dev-91943-authRole",
+      "AuthRoleName": "amplify-cmpe272duke-master-223735-authRole",
+      "UnauthRoleArn": "arn:aws:iam::146838423249:role/amplify-cmpe272duke-master-223735-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::146838423249:role/amplify-cmpe272duke-master-223735-authRole",
       "Region": "us-west-2",
-      "DeploymentBucketName": "amplify-cmpe272duke-dev-91943-deployment",
-      "UnauthRoleName": "amplify-cmpe272duke-dev-91943-unauthRole",
-      "StackName": "amplify-cmpe272duke-dev-91943",
-      "StackId": "arn:aws:cloudformation:us-west-2:146838423249:stack/amplify-cmpe272duke-dev-91943/b4d320a0-3741-11ec-a218-06b5f025c307",
-      "AmplifyAppId": "d2ymtfrc30h6w7"
+      "DeploymentBucketName": "amplify-cmpe272duke-master-223735-deployment",
+      "UnauthRoleName": "amplify-cmpe272duke-master-223735-unauthRole",
+      "StackName": "amplify-cmpe272duke-master-223735",
+      "StackId": "arn:aws:cloudformation:us-west-2:146838423249:stack/amplify-cmpe272duke-master-223735/02ecc630-51a8-11ec-a1ab-0653404d8ecb",
+      "AmplifyAppId": "d21bqr2k9def05"
     },
     "categories": {
       "auth": {
@@ -47,12 +47,12 @@
       },
       "function": {
         "S3Triggerc8c424e6": {
-          "deploymentBucketName": "amplify-cmpe272duke-dev-91943-deployment",
-          "s3Key": "amplify-builds/S3Triggerc8c424e6-445259374b4c44736479-build.zip"
+          "deploymentBucketName": "amplify-cmpe272duke-master-223735-deployment",
+          "s3Key": "amplify-builds/S3Triggerc8c424e6-2f396b43343379766e59-build.zip"
         },
         "AdminQueriesf1ae536e": {
-          "deploymentBucketName": "amplify-cmpe272duke-dev-91943-deployment",
-          "s3Key": "amplify-builds/AdminQueriesf1ae536e-636d62576e366f307175-build.zip"
+          "deploymentBucketName": "amplify-cmpe272duke-master-223735-deployment",
+          "s3Key": "amplify-builds/AdminQueriesf1ae536e-4f7139304a555a645750-build.zip"
         }
       }
     }
