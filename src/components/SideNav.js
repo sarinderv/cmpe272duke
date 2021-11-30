@@ -36,6 +36,12 @@ const SideNav = (props) => {
             path: '/employee',
             icon: <FaIcons.FaCalendarAlt />,
             cName: 'nav-text'
+        },
+        {
+            title: 'Employee for HR Manager',
+            path: '/employeehr',
+            icon: <FaIcons.FaCalendarAlt />,
+            cName: 'nav-text'
         }
     ];
 
