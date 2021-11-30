@@ -55,3 +55,15 @@ query listEmployeesByHrManager($hrManagerId: ID!) {
     }
   }
 `;
+
+export const listTimesheetByEmployee = /* GraphQL */ `
+query listTimesheets($employeeID: ID!,$fillDate: String!) {
+    listTimesheets(filter: {employeeID: {eq: $employeeID}, fillDate: {ge: $fillDate}}) {
+    items {
+      id
+      fillDate
+      hours
+    }
+  }
+}
+`;
