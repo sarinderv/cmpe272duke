@@ -13,8 +13,10 @@ export const createPayroll = /* GraphQL */ `
       basicSalary
       allowance
       tax
+      totalHours
       grossSalary
       netSalary
+      month
       employee {
         id
         firstName
@@ -46,8 +48,10 @@ export const updatePayroll = /* GraphQL */ `
       basicSalary
       allowance
       tax
+      totalHours
       grossSalary
       netSalary
+      month
       employee {
         id
         firstName
@@ -79,8 +83,10 @@ export const deletePayroll = /* GraphQL */ `
       basicSalary
       allowance
       tax
+      totalHours
       grossSalary
       netSalary
+      month
       employee {
         id
         firstName
@@ -242,6 +248,48 @@ export const deleteEmployee = /* GraphQL */ `
       address
       emergencyContactName
       emergencyContactPhone
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createTimesheet = /* GraphQL */ `
+  mutation CreateTimesheet(
+    $input: CreateTimesheetInput!
+    $condition: ModelTimesheetConditionInput
+  ) {
+    createTimesheet(input: $input, condition: $condition) {
+      id
+      hours
+      fillDate
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateTimesheet = /* GraphQL */ `
+  mutation UpdateTimesheet(
+    $input: UpdateTimesheetInput!
+    $condition: ModelTimesheetConditionInput
+  ) {
+    updateTimesheet(input: $input, condition: $condition) {
+      id
+      hours
+      fillDate
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteTimesheet = /* GraphQL */ `
+  mutation DeleteTimesheet(
+    $input: DeleteTimesheetInput!
+    $condition: ModelTimesheetConditionInput
+  ) {
+    deleteTimesheet(input: $input, condition: $condition) {
+      id
+      hours
+      fillDate
       createdAt
       updatedAt
     }

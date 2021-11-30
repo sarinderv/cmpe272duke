@@ -5,10 +5,10 @@ type Payroll @model {
   basicSalary: ID!
   allowance : ID!
   tax : ID!
-  totalHours: ID
+   totalHours: ID
   grossSalary : ID!
   netSalary : ID!
-  month: AWSDate!
+   month: AWSDate!
   employee: Employee @connection(fields: ["employeeId"])
 
 }
@@ -32,5 +32,12 @@ type Employee @model {
     address: String
     emergencyContactName: String
     emergencyContactPhone: String
+
+}
+
+type Timesheet @model {
+    id: ID!
+    hours: Int
+    fillDate: AWSDateTime!
 
 }

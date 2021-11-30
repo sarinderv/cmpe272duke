@@ -10,8 +10,10 @@ export const onCreatePayroll = /* GraphQL */ `
       basicSalary
       allowance
       tax
+      totalHours
       grossSalary
       netSalary
+      month
       employee {
         id
         firstName
@@ -40,8 +42,10 @@ export const onUpdatePayroll = /* GraphQL */ `
       basicSalary
       allowance
       tax
+      totalHours
       grossSalary
       netSalary
+      month
       employee {
         id
         firstName
@@ -70,8 +74,10 @@ export const onDeletePayroll = /* GraphQL */ `
       basicSalary
       allowance
       tax
+      totalHours
       grossSalary
       netSalary
+      month
       employee {
         id
         firstName
@@ -215,6 +221,39 @@ export const onDeleteEmployee = /* GraphQL */ `
       address
       emergencyContactName
       emergencyContactPhone
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateTimesheet = /* GraphQL */ `
+  subscription OnCreateTimesheet {
+    onCreateTimesheet {
+      id
+      hours
+      fillDate
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateTimesheet = /* GraphQL */ `
+  subscription OnUpdateTimesheet {
+    onUpdateTimesheet {
+      id
+      hours
+      fillDate
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteTimesheet = /* GraphQL */ `
+  subscription OnDeleteTimesheet {
+    onDeleteTimesheet {
+      id
+      hours
+      fillDate
       createdAt
       updatedAt
     }

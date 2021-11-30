@@ -10,8 +10,10 @@ export const getPayroll = /* GraphQL */ `
       basicSalary
       allowance
       tax
+      totalHours
       grossSalary
       netSalary
+      month
       employee {
         id
         firstName
@@ -45,8 +47,10 @@ export const listPayrolls = /* GraphQL */ `
         basicSalary
         allowance
         tax
+        totalHours
         grossSalary
         netSalary
+        month
         employee {
           id
           firstName
@@ -161,6 +165,35 @@ export const listEmployees = /* GraphQL */ `
         address
         emergencyContactName
         emergencyContactPhone
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getTimesheet = /* GraphQL */ `
+  query GetTimesheet($id: ID!) {
+    getTimesheet(id: $id) {
+      id
+      hours
+      fillDate
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listTimesheets = /* GraphQL */ `
+  query ListTimesheets(
+    $filter: ModelTimesheetFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listTimesheets(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        hours
+        fillDate
         createdAt
         updatedAt
       }
