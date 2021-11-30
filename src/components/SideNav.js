@@ -42,7 +42,7 @@ const SideNav = (props) => {
                 <Link to='#' className='menu-bars'>
                     <FaIcons.FaBars onClick={showSidebar} />
                 </Link>
-                <div className='title'>Duke HR Serdar</div>
+                <div className='title'>Duke HR</div>
                 <AmplifySignOut />
             </div>
             <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
