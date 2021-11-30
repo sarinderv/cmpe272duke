@@ -34,7 +34,7 @@ type Employee @model {
     hrManagerId: ID!
     hrManagerName: String!
     hrManagerLastName: String!
-    startDate: AWSDateTime
+    startDate: AWSDate
     phone: String
     address: String
     emergencyContactName: String

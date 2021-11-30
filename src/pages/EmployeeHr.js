@@ -1,10 +1,11 @@
 import { API, Auth } from 'aws-amplify';
 import React, { useState, useEffect } from 'react';
-import { listEmployeesByHrManager,  } from '../graphql/customQueries';
+import { listEmployees,  } from '../graphql/queries';
 import { deleteEmployee,  } from '../graphql/mutations';
 import { useHistory } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import UpdateEmployeeByHrModal from "./UpdateEmployeeByHrModal";
+import CreateEmployeeByHrModal from "./CreateEmployeeByHrModal";
 
 
 export default function EmployeeHR() {
@@ -15,6 +16,7 @@ export default function EmployeeHR() {
     const history = useHistory();
     const [selectedEmployee, setSelectedEmployee] = useState([]);
     const [updateModalShow, setUpdateModalShow] = React.useState(false);
+    const [createModalShow, setCreateModalShow] = React.useState(false);
 
     useEffect(() => {
         fetchUserData();
@@ -24,15 +26,15 @@ export default function EmployeeHR() {
         await Auth.currentAuthenticatedUser()
           .then((userSession) => {
             console.log("userData: ", userSession);
-            fetchEmployees(userSession.signInUserSession.accessToken.payload.username);
+            fetchEmployees();
             setUserData(userSession.signInUserSession.accessToken);
           })
           .catch((e) => console.log("Not signed in", e));
       }
 
-    async function fetchEmployees(userName) {
+    async function fetchEmployees() {
         try {
-         const apiData = await API.graphql({ query: listEmployeesByHrManager, variables: { hrManagerId: userName }  });
+         const apiData = await API.graphql({ query: listEmployees });
           setEmployees(apiData.data.listEmployees.items);
         } catch (e) {
             console.error('error fetching employees', e);
@@ -57,7 +59,12 @@ export default function EmployeeHR() {
     function openUpdateEmployeeModal(employee) {
       setSelectedEmployee(employee);
       setUpdateModalShow(true);
-  }
+    }
+
+    function openCreateEmployeeModal() {
+      setCreateModalShow(true);
+    }
+
 
     return (
         <div className='employee'>
@@ -104,12 +111,18 @@ export default function EmployeeHR() {
                     ))
                   }
                 </tbody>
+                <Button variant="success" size="sm" onClick={() => openCreateEmployeeModal()}>Create</Button>{' '}
             </table>
             <UpdateEmployeeByHrModal
                   show={updateModalShow}
                   employee={selectedEmployee}
                   onUpdated={() => fetchEmployees(selectedEmployee.hrManagerId)}
                   onHide={() => setUpdateModalShow(false)}
+            />
+             <CreateEmployeeByHrModal
+                  show={createModalShow}
+                  onUpdated={() => fetchEmployees()}
+                  onHide={() => setCreateModalShow(false)}
             />
         </div>
         </div>
