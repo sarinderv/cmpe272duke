@@ -1,6 +1,6 @@
 import { API, Auth } from 'aws-amplify';
 import React, { useState, useEffect } from 'react';
-import { listEmployees,  } from '../graphql/queries';
+import { listEmployeesByManager,  } from '../graphql/customQueries';
 import { useHistory } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 
@@ -28,7 +28,7 @@ export default function Employee() {
 
     async function fetchEmployees(userName) {
         try {
-         const apiData = await API.graphql({ query: listEmployees });
+         const apiData = await API.graphql({ query: listEmployeesByManager, variables: { managerId: userName }  });
           setEmployees(apiData.data.listEmployees.items);
         } catch (e) {
             console.error('error fetching employees', e);
@@ -48,9 +48,11 @@ export default function Employee() {
                     <th>Last Name</th>
                     <th>Title</th>
                     <th>Department</th>
+                    <th>Email</th>
                     <th>Phone</th>
                     <th>Address</th>
                     <th>Start Date</th>
+                    <th>HR Manager</th>
                     <th>Emergency Contact Name</th>
                     <th>Emergency Contact Phone</th>
                   </tr>
@@ -64,9 +66,11 @@ export default function Employee() {
                         <td>{employee.lastName}</td>
                         <td> {employee.title}</td>
                         <td>{employee.department}</td>
+                        <td>{employee.email}</td>
                         <td> {employee.phone}</td>
                         <td>{employee.address}</td>
                         <td> {employee.startDate}</td>
+                        <td> {employee.hrManagerName +" "+ employee.hrManagerLastName}</td>
                         <td>{employee.emergencyContactName}</td>
                         <td>{employee.emergencyContactPhone}</td>
                       </tr>

@@ -20,6 +20,13 @@ export const onCreatePayroll = /* GraphQL */ `
         lastName
         title
         department
+        managerId
+        managerName
+        managerLastName
+        email
+        hrManagerId
+        hrManagerName
+        hrManagerLastName
         startDate
         phone
         address
@@ -52,6 +59,13 @@ export const onUpdatePayroll = /* GraphQL */ `
         lastName
         title
         department
+        managerId
+        managerName
+        managerLastName
+        email
+        hrManagerId
+        hrManagerName
+        hrManagerLastName
         startDate
         phone
         address
@@ -84,6 +98,13 @@ export const onDeletePayroll = /* GraphQL */ `
         lastName
         title
         department
+        managerId
+        managerName
+        managerLastName
+        email
+        hrManagerId
+        hrManagerName
+        hrManagerLastName
         startDate
         phone
         address
@@ -109,6 +130,13 @@ export const onCreateHourlyRate = /* GraphQL */ `
         lastName
         title
         department
+        managerId
+        managerName
+        managerLastName
+        email
+        hrManagerId
+        hrManagerName
+        hrManagerLastName
         startDate
         phone
         address
@@ -134,6 +162,13 @@ export const onUpdateHourlyRate = /* GraphQL */ `
         lastName
         title
         department
+        managerId
+        managerName
+        managerLastName
+        email
+        hrManagerId
+        hrManagerName
+        hrManagerLastName
         startDate
         phone
         address
@@ -159,6 +194,13 @@ export const onDeleteHourlyRate = /* GraphQL */ `
         lastName
         title
         department
+        managerId
+        managerName
+        managerLastName
+        email
+        hrManagerId
+        hrManagerName
+        hrManagerLastName
         startDate
         phone
         address
@@ -180,6 +222,13 @@ export const onCreateEmployee = /* GraphQL */ `
       lastName
       title
       department
+      managerId
+      managerName
+      managerLastName
+      email
+      hrManagerId
+      hrManagerName
+      hrManagerLastName
       startDate
       phone
       address
@@ -198,6 +247,13 @@ export const onUpdateEmployee = /* GraphQL */ `
       lastName
       title
       department
+      managerId
+      managerName
+      managerLastName
+      email
+      hrManagerId
+      hrManagerName
+      hrManagerLastName
       startDate
       phone
       address
@@ -216,6 +272,13 @@ export const onDeleteEmployee = /* GraphQL */ `
       lastName
       title
       department
+      managerId
+      managerName
+      managerLastName
+      email
+      hrManagerId
+      hrManagerName
+      hrManagerLastName
       startDate
       phone
       address

@@ -23,6 +23,13 @@ export const createPayroll = /* GraphQL */ `
         lastName
         title
         department
+        managerId
+        managerName
+        managerLastName
+        email
+        hrManagerId
+        hrManagerName
+        hrManagerLastName
         startDate
         phone
         address
@@ -58,6 +65,13 @@ export const updatePayroll = /* GraphQL */ `
         lastName
         title
         department
+        managerId
+        managerName
+        managerLastName
+        email
+        hrManagerId
+        hrManagerName
+        hrManagerLastName
         startDate
         phone
         address
@@ -93,6 +107,13 @@ export const deletePayroll = /* GraphQL */ `
         lastName
         title
         department
+        managerId
+        managerName
+        managerLastName
+        email
+        hrManagerId
+        hrManagerName
+        hrManagerLastName
         startDate
         phone
         address
@@ -121,6 +142,13 @@ export const createHourlyRate = /* GraphQL */ `
         lastName
         title
         department
+        managerId
+        managerName
+        managerLastName
+        email
+        hrManagerId
+        hrManagerName
+        hrManagerLastName
         startDate
         phone
         address
@@ -149,6 +177,13 @@ export const updateHourlyRate = /* GraphQL */ `
         lastName
         title
         department
+        managerId
+        managerName
+        managerLastName
+        email
+        hrManagerId
+        hrManagerName
+        hrManagerLastName
         startDate
         phone
         address
@@ -177,6 +212,13 @@ export const deleteHourlyRate = /* GraphQL */ `
         lastName
         title
         department
+        managerId
+        managerName
+        managerLastName
+        email
+        hrManagerId
+        hrManagerName
+        hrManagerLastName
         startDate
         phone
         address
@@ -201,6 +243,13 @@ export const createEmployee = /* GraphQL */ `
       lastName
       title
       department
+      managerId
+      managerName
+      managerLastName
+      email
+      hrManagerId
+      hrManagerName
+      hrManagerLastName
       startDate
       phone
       address
@@ -222,6 +271,13 @@ export const updateEmployee = /* GraphQL */ `
       lastName
       title
       department
+      managerId
+      managerName
+      managerLastName
+      email
+      hrManagerId
+      hrManagerName
+      hrManagerLastName
       startDate
       phone
       address
@@ -243,6 +299,13 @@ export const deleteEmployee = /* GraphQL */ `
       lastName
       title
       department
+      managerId
+      managerName
+      managerLastName
+      email
+      hrManagerId
+      hrManagerName
+      hrManagerLastName
       startDate
       phone
       address

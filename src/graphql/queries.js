@@ -20,6 +20,13 @@ export const getPayroll = /* GraphQL */ `
         lastName
         title
         department
+        managerId
+        managerName
+        managerLastName
+        email
+        hrManagerId
+        hrManagerName
+        hrManagerLastName
         startDate
         phone
         address
@@ -57,6 +64,13 @@ export const listPayrolls = /* GraphQL */ `
           lastName
           title
           department
+          managerId
+          managerName
+          managerLastName
+          email
+          hrManagerId
+          hrManagerName
+          hrManagerLastName
           startDate
           phone
           address
@@ -84,6 +98,13 @@ export const getHourlyRate = /* GraphQL */ `
         lastName
         title
         department
+        managerId
+        managerName
+        managerLastName
+        email
+        hrManagerId
+        hrManagerName
+        hrManagerLastName
         startDate
         phone
         address
@@ -114,6 +135,13 @@ export const listHourlyRates = /* GraphQL */ `
           lastName
           title
           department
+          managerId
+          managerName
+          managerLastName
+          email
+          hrManagerId
+          hrManagerName
+          hrManagerLastName
           startDate
           phone
           address
@@ -137,6 +165,13 @@ export const getEmployee = /* GraphQL */ `
       lastName
       title
       department
+      managerId
+      managerName
+      managerLastName
+      email
+      hrManagerId
+      hrManagerName
+      hrManagerLastName
       startDate
       phone
       address
@@ -160,6 +195,13 @@ export const listEmployees = /* GraphQL */ `
         lastName
         title
         department
+        managerId
+        managerName
+        managerLastName
+        email
+        hrManagerId
+        hrManagerName
+        hrManagerLastName
         startDate
         phone
         address

@@ -27,6 +27,13 @@ type Employee @model {
     lastName: String!
     title: String!
     department: String!
+    managerId: ID!
+    managerName: String!
+    managerLastName: String!
+    email: String!
+    hrManagerId: ID!
+    hrManagerName: String!
+    hrManagerLastName: String!
     startDate: AWSDateTime
     phone: String
     address: String

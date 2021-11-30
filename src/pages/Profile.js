@@ -81,6 +81,21 @@ export default function Profile() {
                             </Row>
                             <Row className="align-items-center">
                             <Col style={{ fontSize: "1rem" }}>
+                            <b>Email:</b> {employee.email}
+                            </Col>
+                            </Row>
+                            <Row className="align-items-center">
+                            <Col style={{ fontSize: "1rem" }}>
+                            <b>Manager:</b> {employee.managerName +" "+ employee.managerLastName}
+                            </Col>
+                            </Row>
+                            <Row className="align-items-center">
+                            <Col style={{ fontSize: "1rem" }}>
+                            <b>HR Manager:</b> {employee.hrManagerName +" "+ employee.hrManagerLastName}
+                            </Col>
+                            </Row>
+                            <Row className="align-items-center">
+                            <Col style={{ fontSize: "1rem" }}>
                             <b>Phone:</b> {employee.phone}
                             </Col>
                             </Row>
