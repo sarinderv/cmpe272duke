@@ -5,8 +5,10 @@ type Payroll @model {
   basicSalary: ID!
   allowance : ID!
   tax : ID!
+  totalHours: ID
   grossSalary : ID!
   netSalary : ID!
+  month: AWSDate!
   employee: Employee @connection(fields: ["employeeId"])
 
 }
