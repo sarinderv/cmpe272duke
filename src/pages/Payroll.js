@@ -2,6 +2,11 @@ import API from '@aws-amplify/api';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { listPayrolls } from '../graphql/queries';
+import { useFormFields } from "../lib/hooksLib";
+import Form from "react-bootstrap/Form";
+import Modal from "react-bootstrap/Modal";
+import {listPayrollsByEmployee} from '../graphql/customQueries';
+import { listEmployees,  } from '../graphql/queries';
 import {
     Container,
     Row,
@@ -12,11 +17,30 @@ import {
 export default function Payroll() {
     const history = useHistory();
     const [listPat, setListPat] = useState([]);
+    const [payrolls, setPayrolls]= useState([]);
+    const [employees, setEmployees] = useState([]);
+    const [errorMessages, setErrorMessages] = useState([]);
+    const [updatePayrollModalShow, setPayrollModalShow] = React.useState(false);
+    const [selectedEmployee, setSelectedEmployee] = useState([]);
+    const [fields, handleFieldChange] = useFormFields({
+        employeeId: ""
+      });
 
     useEffect(() => {
         list();
+        fetchEmployees();
     }, []);
 
+
+    async function fetchEmployees() {
+        try {
+         const apiData = await API.graphql({ query: listEmployees });
+          setEmployees(apiData.data.listEmployees.items);
+        } catch (e) {
+            console.error('error fetching employees', e);
+            setErrorMessages(e.errors);
+        }
+      }
     async function list() {
         try {
             const apiData = await API.graphql({ query: listPayrolls });
@@ -31,30 +55,142 @@ export default function Payroll() {
         }
     }
 
+    function validateForm() {
+        try {
+          return (
+            fields.employeeId.length > 0
+         
+          );
+        } catch (e) {
+          return false;
+        }
+      }
+  
+      function openPayroll(employee) {
+        setSelectedEmployee(employee);
+        setPayrollModalShow(true);
+      }
+
+
+    async function handleSubmit(event) {
+        event.preventDefault();
+        
+        console.log("inside fetch payrolls for employee : ",fields.employeeId );
+        try {
+            const apiData = await API.graphql({ query: listPayrollsByEmployee, variables: { employeeId: fields.employeeId }  });
+            console.log(apiData.data.listPayrolls.items);
+            function sortFunction(a, b) {
+              return a.month < b.month ? 1 : -1;
+            }
+            const sortedData = apiData.data.listPayrolls.items.sort(sortFunction);
+            setPayrolls(sortedData);
+            setPayrollModalShow(true);
+        }catch(e){
+            console.error('error fetching payrolls for employee', e);
+            setErrorMessages(e.errors);
+        }
+        history.push("/payroll");
+      }
+
+      function onHidePayrollModal(employee) {
+        console.log("inside onHidePayrollModal")
+        setSelectedEmployee(employee);
+        setPayrollModalShow(false);
+      
+      }
+
     return (
-        <Container>
+
+
+<div className="payroll"> 
+<div>
+          {/* <RenderListPatientButton /> */}
+        <Form onSubmit={handleSubmit}>
+          <Form.Group controlId="employeeId" size="lg">
+            <Form.Label><b>Employee Id</b></Form.Label>
+            <Form.Control 
+            as="select" onChange={handleFieldChange}
+            >
+                   {
+          employees.map(employee => (
+                 <option  key={employee.id || employee.firstName} value={employee.id}>{employee.firstName} {employee.lastName}</option>  
+                
+              ))
+            }  
+
+            </Form.Control>
+            </Form.Group>
+    
+          <Button block size="lg" type="submit"  onClick={() => openPayroll(fields.employeeId)}>
+            Show Result
+          </Button>
+        </Form>
+        </div>
+
+
+        <Modal
+      {...selectedEmployee}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered  show={updatePayrollModalShow}  onHide={() => onHidePayrollModal(selectedEmployee)}
+    >
+      <Modal.Header closeButton >
+        <Modal.Title id="contained-modal-title-vcenter">
+          Payroll for {selectedEmployee.firstName} {selectedEmployee.lastName}
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+       
+      <Container>
             <Row>
+
+
                 <Table striped bordered hover>
-                    <thead>
-                        <tr>
-                            <th>id</th>
-                            <th>Total Hours</th>
-                            <th>Created</th>
-                            <th>Updated</th>
-                        </tr>
-                    </thead>
+                <thead>
+        <tr>
+           {/* <th>ID</th> */}
+          <th>Employee Id</th>
+          <th>Basic Salary</th>
+          <th>Allowance</th>
+          <th>Tax</th>
+          <th>Provident Fund</th>
+          <th>Total Hours</th>
+          <th>Month</th>
+          <th>Gross Salary</th>
+          <th>Net Salary</th>
+
+        </tr>
+      </thead>
                     <tbody>
-                        {listPat.map(row => (
-                            <tr key={row.id}>
-                                <td>{row.id}</td>
-                                <td>{row.totalHours}</td>
-                                <td>{row.createdAt}</td>
-                                <td>{row.updatedAt}</td>
-                            </tr>
-                        ))}
+                    {
+      payrolls.map(payroll => (
+        
+            <tr key={payroll.id}> 
+                {/* <td>{prescription.id}</td> */}
+              <td>{payroll.employeeId}</td>
+              <td>{payroll.basicSalary}</td>
+              <td>{payroll.allowance}</td>
+              <td>{payroll.tax}</td>
+              <td>{payroll.providentFund}</td>
+              <td>{payroll.totalHours}</td>
+              <td>{payroll.month}</td>
+              <td>{payroll.grossSalary}</td>
+              <td>{payroll.netSalary}</td>
+                       
+            </tr>
+          ))
+        }
                     </tbody>
                 </Table>
             </Row>
         </Container>
+
+        
+      </Modal.Body>
+    </Modal>
+
+</div>
+        
+   
     )
 }

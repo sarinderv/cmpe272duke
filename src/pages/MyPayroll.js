@@ -2,7 +2,7 @@ import { getEmployee,  } from '../graphql/queries';
 import { API, Auth } from 'aws-amplify';
 import React, { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col , Table} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import {listPayrollsByEmployee} from '../graphql/customQueries';
 
@@ -58,7 +58,7 @@ export default function MyPayroll() {
 
 <div >
         <h2>Payrolls</h2>
-<table>
+<Table striped bordered hover>
       <thead>
         <tr>
            {/* <th>ID</th> */}
@@ -94,7 +94,7 @@ export default function MyPayroll() {
           ))
         }
       </tbody>
-    </table>
+    </Table>
     </div>
 
         </div>
