@@ -1,11 +1,11 @@
-import API from '@aws-amplify/api';
+import { API, Auth } from 'aws-amplify';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { listPayrolls } from '../graphql/queries';
 import { useFormFields } from "../lib/hooksLib";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
-import {listPayrollsByEmployee} from '../graphql/customQueries';
+import {listPayrollsByEmployee,listEmployeesByManager} from '../graphql/customQueries';
 import { listEmployees,  } from '../graphql/queries';
 import {
     Container,
@@ -17,8 +17,10 @@ import {
 export default function Payroll() {
     const history = useHistory();
     const [listPat, setListPat] = useState([]);
+    const [userData, setUserData] = useState({ payload: { username: '' } });
     const [payrolls, setPayrolls]= useState([]);
     const [employees, setEmployees] = useState([]);
+    const [employeesByM, setEmployeesByManager] = useState([]);
     const [errorMessages, setErrorMessages] = useState([]);
     const [updatePayrollModalShow, setPayrollModalShow] = React.useState(false);
     const [selectedEmployee, setSelectedEmployee] = useState([]);
@@ -27,15 +29,38 @@ export default function Payroll() {
       });
 
     useEffect(() => {
+        fetchUserData();
         list();
         fetchEmployees();
     }, []);
 
 
+
+    async function fetchUserData() {
+        await Auth.currentAuthenticatedUser()
+          .then((userSession) => {
+            console.log("userData: ", userSession);
+            fetchEmployeesByManager(userSession.signInUserSession.accessToken.payload.username);
+            setUserData(userSession.signInUserSession.accessToken);
+          })
+          .catch((e) => console.log("Not signed in", e));
+      }
+    
+
     async function fetchEmployees() {
         try {
          const apiData = await API.graphql({ query: listEmployees });
           setEmployees(apiData.data.listEmployees.items);
+        } catch (e) {
+            console.error('error fetching employees', e);
+            setErrorMessages(e.errors);
+        }
+      }
+
+      async function fetchEmployeesByManager(userName) {
+        try {
+         const apiData = await API.graphql({ query: listEmployeesByManager, variables: { managerId: userName } });
+         setEmployeesByManager(apiData.data.listEmployees.items);
         } catch (e) {
             console.error('error fetching employees', e);
             setErrorMessages(e.errors);
@@ -112,7 +137,7 @@ export default function Payroll() {
             as="select" onChange={handleFieldChange}
             >
                    {
-          employees.map(employee => (
+          employeesByM.map(employee => (
                  <option  key={employee.id || employee.firstName} value={employee.id}>{employee.firstName} {employee.lastName}</option>  
                 
               ))
