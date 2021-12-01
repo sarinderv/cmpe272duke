@@ -7,6 +7,8 @@ import SideNav from './components/SideNav';
 import Profile from './pages/Profile';
 import Payroll from './pages/Payroll';
 import Timesheets from './pages/Timesheets';
+import CreateTimesheet from './pages/CreateTimesheet';
+import ViewTimesheet from './pages/ViewTimesheet';
 import CreatePayroll from './pages/CreatePayroll';
 import EmployeeNotFound from './pages/EmployeeNotFound';
 import Employee from './pages/Employee';
@@ -72,7 +74,10 @@ function App() {
           <Route path='/' exact component={Profile} />
           <Route path='/payroll' component={Payroll} />
           <Route path='/timesheets' component={Timesheets} />
+          <Route path='/createtimesheet' component={CreateTimesheet} />
+          <Route path='/viewtimesheet' component={ViewTimesheet} />
           <Route path='/createpayroll' component={CreatePayroll} />
+          <Route path='/createtimesheet' component={CreateTimesheet} />
           <Route path='/employeenotfound' component={EmployeeNotFound} />
           <Route path='/employee' component={Employee} />
           <Route path='/employeehr' component={EmployeeHR} />
