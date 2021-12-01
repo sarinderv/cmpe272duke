@@ -36,6 +36,10 @@ export default function Timesheet() {
         return userData.payload['cognito:groups'] && userData.payload['cognito:groups'][0] === "Manager";
     }
 
+    function isHrManager() {
+        return userData.payload['cognito:groups'] && userData.payload['cognito:groups'][0] === "HrManager";
+    }
+
     async function list() {
         try {
             const apiData = await API.graphql({ query: listTimesheets });
@@ -60,7 +64,7 @@ export default function Timesheet() {
                 <Table striped bordered hover>
                     <thead>
                         <tr>
-                            {isAdmin() ? <th>Owner</th> : ""}
+                            {isAdmin() || isManager() || isHrManager() ? <th>Owner</th> : ""}
                             <th>Total Hours</th>
                             <th>Filled Date</th>
                             <th>Updated</th>
@@ -70,7 +74,7 @@ export default function Timesheet() {
                     <tbody>
                         {rows.sort(comparator).map(row => (
                             <tr key={row.id}>
-                                {isAdmin() ? <td>{row.owner}</td> : ""}
+                                {isAdmin() || isManager() || isHrManager() ? <td>{row.owner}</td> : ""}
                                 <td>{row.hours}</td>
                                 <td>{new Date(row.fillDate).toLocaleDateString("en-US")}</td>
                                 <td>{new Date(row.updatedAt).toLocaleString("en-US")}</td>

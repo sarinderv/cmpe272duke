@@ -25,6 +25,7 @@ function App() {
         break;
       case 'signOut':
         console.info('user signed out');
+        window.location = '/';
         break;
       case 'signIn_failure':
         console.error('user sign in failed');
@@ -61,10 +62,14 @@ function App() {
     return userData.payload['cognito:groups'] && userData.payload['cognito:groups'][0] === "Manager";
   }
 
+  function isHrManager() {
+    return userData.payload['cognito:groups'] && userData.payload['cognito:groups'][0] === "HrManager";
+  }
+
   function userInfo() {
     return (
       <>
-        {userData.payload.username} <div className="badge">{isAdmin() ? "Admin" : isManager() ? "Manager" : "Employee"}</div>
+        {userData.payload.username} <div className="badge">{isAdmin() ? "Admin" : isManager() ? "Manager" : isHrManager() ? "HR Manager" : "Employee"}</div>
       </>
     );
   }
