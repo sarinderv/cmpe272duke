@@ -77,7 +77,6 @@ function App() {
           <Route path='/createtimesheet' component={CreateTimesheet} />
           <Route path='/viewtimesheet' component={ViewTimesheet} />
           <Route path='/createpayroll' component={CreatePayroll} />
-          <Route path='/createtimesheet' component={CreateTimesheet} />
           <Route path='/employeenotfound' component={EmployeeNotFound} />
           <Route path='/employee' component={Employee} />
           <Route path='/employeehr' component={EmployeeHR} />
