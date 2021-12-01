@@ -25,6 +25,7 @@ function App() {
         break;
       case 'signOut':
         console.info('user signed out');
+        window.location = '/';
         break;
       case 'signIn_failure':
         console.error('user sign in failed');
@@ -57,10 +58,18 @@ function App() {
     return userData.payload['cognito:groups'] && userData.payload['cognito:groups'][0] === "Admins";
   }
 
+  function isManager() {
+    return userData.payload['cognito:groups'] && userData.payload['cognito:groups'][0] === "Manager";
+  }
+
+  function isHrManager() {
+    return userData.payload['cognito:groups'] && userData.payload['cognito:groups'][0] === "HrManager";
+  }
+
   function userInfo() {
     return (
       <>
-        {userData.payload.username} <div className="badge">{isAdmin() ? "Admin" : "User"}</div>
+        {userData.payload.username} <div className="badge">{isAdmin() ? "Admin" : isManager() ? "Manager" : isHrManager() ? "HR Manager" : "Employee"}</div>
       </>
     );
   }
@@ -77,7 +86,6 @@ function App() {
           <Route path='/createtimesheet' component={CreateTimesheet} />
           <Route path='/viewtimesheet' component={ViewTimesheet} />
           <Route path='/createpayroll' component={CreatePayroll} />
-          <Route path='/createtimesheet' component={CreateTimesheet} />
           <Route path='/employeenotfound' component={EmployeeNotFound} />
           <Route path='/employee' component={Employee} />
           <Route path='/employeehr' component={EmployeeHR} />

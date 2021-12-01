@@ -42,7 +42,7 @@ export default function CreateTimesheet() {
         id: getNewTimesheetId(),
         fillDate: new Date(),
         hours: hours,
-        //weeks: rows
+        weeks: JSON.stringify(rows)
       };
       console.log(timesheet);
       await API.graphql({

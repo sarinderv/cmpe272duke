@@ -220,8 +220,10 @@ export const getTimesheet = /* GraphQL */ `
       id
       hours
       fillDate
+      weeks
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -236,8 +238,10 @@ export const listTimesheets = /* GraphQL */ `
         id
         hours
         fillDate
+        weeks
         createdAt
         updatedAt
+        owner
       }
       nextToken
     }

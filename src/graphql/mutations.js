@@ -325,8 +325,10 @@ export const createTimesheet = /* GraphQL */ `
       id
       hours
       fillDate
+      weeks
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -339,8 +341,10 @@ export const updateTimesheet = /* GraphQL */ `
       id
       hours
       fillDate
+      weeks
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -353,8 +357,10 @@ export const deleteTimesheet = /* GraphQL */ `
       id
       hours
       fillDate
+      weeks
       createdAt
       updatedAt
+      owner
     }
   }
 `;
