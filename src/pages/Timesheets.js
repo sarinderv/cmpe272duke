@@ -27,7 +27,8 @@ export default function Timesheet() {
         }
     }
 
-    const handleSubmit = () => history.push("/createtimesheet");;
+    const handleSubmit = () => history.push("/createtimesheet");
+    const handleOpen = (id) => {console.log(id); history.push("/viewtimesheet/"+ id);};
 
     return (
         <Container>
@@ -36,19 +37,20 @@ export default function Timesheet() {
                 <Table striped bordered hover>
                     <thead>
                         <tr>
-                            <th>id</th>
                             <th>Total Hours</th>
+                            <th>Filled Date</th>
                             <th>Created</th>
-                            <th>Updated</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         {rows.map(row => (
                             <tr key={row.id}>
-                                <td>{row.id}</td>
                                 <td>{row.hours}</td>
+                                <td>{new Date(row.fillDate).toLocaleDateString("en-US")}</td>
                                 <td>{new Date(row.createdAt).toLocaleString("en-US")}</td>
-                                <td>{new Date(row.updatedAt).toLocaleString("en-US")}</td>
+                                <td><Button variant="secondary" onClick={() => handleOpen(row.id)}>Open</Button>
+                                </td>
                             </tr>
                         ))}
                     </tbody>
