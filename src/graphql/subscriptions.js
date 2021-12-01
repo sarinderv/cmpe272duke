@@ -290,38 +290,41 @@ export const onDeleteEmployee = /* GraphQL */ `
   }
 `;
 export const onCreateTimesheet = /* GraphQL */ `
-  subscription OnCreateTimesheet {
-    onCreateTimesheet {
+  subscription OnCreateTimesheet($owner: String) {
+    onCreateTimesheet(owner: $owner) {
       id
       hours
       fillDate
       weeks
       createdAt
       updatedAt
+      owner
     }
   }
 `;
 export const onUpdateTimesheet = /* GraphQL */ `
-  subscription OnUpdateTimesheet {
-    onUpdateTimesheet {
+  subscription OnUpdateTimesheet($owner: String) {
+    onUpdateTimesheet(owner: $owner) {
       id
       hours
       fillDate
       weeks
       createdAt
       updatedAt
+      owner
     }
   }
 `;
 export const onDeleteTimesheet = /* GraphQL */ `
-  subscription OnDeleteTimesheet {
-    onDeleteTimesheet {
+  subscription OnDeleteTimesheet($owner: String) {
+    onDeleteTimesheet(owner: $owner) {
       id
       hours
       fillDate
       weeks
       createdAt
       updatedAt
+      owner
     }
   }
 `;

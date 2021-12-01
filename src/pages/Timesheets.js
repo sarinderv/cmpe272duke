@@ -24,6 +24,7 @@ export default function Timesheet() {
             setRows(apiData.data.listTimesheets.items);
         } catch (e) {
             console.log("Errors fetching rows...", e);
+            alert(e.errors ? e.errors[0].message : e);
         }
     }
 

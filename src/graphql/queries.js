@@ -223,6 +223,7 @@ export const getTimesheet = /* GraphQL */ `
       weeks
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -240,6 +241,7 @@ export const listTimesheets = /* GraphQL */ `
         weeks
         createdAt
         updatedAt
+        owner
       }
       nextToken
     }

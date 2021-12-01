@@ -42,7 +42,10 @@ type Employee @model {
 
 }
 
-type Timesheet @model {
+type Timesheet @model @auth(rules: [
+  { allow: groups, groups: ["Admins"] }
+  { allow: owner }
+]) {
     id: ID!
     hours: Float
     fillDate: AWSDateTime!
