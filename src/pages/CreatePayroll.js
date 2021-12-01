@@ -7,13 +7,13 @@ import { useFormFields } from "../lib/hooksLib";
 import { API } from 'aws-amplify';
 import "./CreatePayroll.css";
 import { createPayroll } from '../graphql/mutations';
+import {listEmployeesByManager} from '../graphql/customQueries';
 
 export default function CreatePayroll() {
   const [adminRole, setAdminRole] = useState(false);
     const [userData, setUserData] = useState({ payload: { username: '' } });
     const [errorMessages, setErrorMessages] = useState([]);
-    let grossSalary=0;
-    let netSalary = 0;
+    const [employeesByM, setEmployeesByManager] = useState([]);
     const [fields, handleFieldChange] = useFormFields({
       employeeId: "",
       tax: "",
@@ -23,7 +23,7 @@ export default function CreatePayroll() {
       month: "",
       netSalary:"",
       grossSalary:"",
-      totalHours:""
+      totalHours:"",
     });
     const history = useHistory();
   
@@ -36,9 +36,22 @@ export default function CreatePayroll() {
         .then((userSession) => {
           console.log("userData: ", userSession);
           setUserData(userSession.signInUserSession.accessToken);
+          fetchEmployeesByManager(userSession.signInUserSession.accessToken.payload.username);
         })
         .catch((e) => console.log("Not signed in", e));
     }
+
+
+    async function fetchEmployeesByManager(userName) {
+      try {
+       const apiData = await API.graphql({ query: listEmployeesByManager, variables: { managerId: userName } });
+       setEmployeesByManager(apiData.data.listEmployees.items);
+      } catch (e) {
+          console.error('error fetching employees', e);
+          setErrorMessages(e.errors);
+      }
+    }
+
 
     function validateForm() {
       try {
@@ -63,7 +76,7 @@ export default function CreatePayroll() {
     async function handleSubmit(event) {
       event.preventDefault();
       try {
-
+  
         await API.graphql({ query: createPayroll, variables: { input: {employeeId: fields.employeeId, providentFund: fields.providentFund, id: userData.payload.username+"_"+Math.random().toString().replace("0.", "")
         , basicSalary: fields.basicSalary, allowance: fields.allowance, tax: fields.tax,
             month: fields.month, totalHours: fields.totalHours, grossSalary: fields.grossSalary, netSalary: fields.netSalary} } });
@@ -82,12 +95,19 @@ export default function CreatePayroll() {
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="employeeId" size="lg">
             <Form.Label>Employee Id</Form.Label>
-            <Form.Control
-              type="text"
-              value={fields.employeeId}
-              onChange={handleFieldChange}
-            />
+             <Form.Control 
+            as="select" onChange={handleFieldChange}
+            >
+                   {
+          employeesByM.map(employee => (
+                 <option  key={employee.id || employee.firstName} value={employee.id}>{employee.id}</option>  
+                
+              ))
+            }  
+
+            </Form.Control>
           </Form.Group>
+          
           <Form.Group controlId="providentFund" size="lg">
             <Form.Label>Provident Fund</Form.Label>
             <Form.Control
@@ -131,7 +151,7 @@ export default function CreatePayroll() {
           <Form.Group controlId="totalHours" size="lg">
             <Form.Label>Total Hours</Form.Label>
             <Form.Control
-              type="totalHours"
+              type="text"
               value={fields.totalHours}
               onChange={handleFieldChange}
             />
