@@ -19,7 +19,7 @@ const SideNav = (props) => {
         {
             title: 'Payroll',
             path: '/payroll',
-            icon: <FaIcons.FaDollarSign />,
+            icon: <FaIcons.FaList />,
             cName: 'nav-text',
             show: isManager || isHrManager
         },
@@ -33,21 +33,21 @@ const SideNav = (props) => {
         {
             title: 'Create Payroll',
             path: '/createpayroll',
-            icon: <FaIcons.FaCalendarAlt />,
+            icon: <FaIcons.FaFileInvoiceDollar />,
             cName: 'nav-text',
             show: isHrManager
         },
         {
             title: 'Employees',
             path: '/employee',
-            icon: <FaIcons.FaCalendarAlt />,
+            icon: <FaIcons.FaUsers />,
             cName: 'nav-text',
             show: isManager
         },
         {
             title: 'Employees',
             path: '/employeehr',
-            icon: <FaIcons.FaCalendarAlt />,
+            icon: <FaIcons.FaUsers />,
             cName: 'nav-text',
             show: isHrManager
         }
@@ -55,7 +55,7 @@ const SideNav = (props) => {
         {
             title: 'My Payroll',
             path: '/mypayroll',
-            icon: <FaIcons.FaCalendarAlt />,
+            icon: <FaIcons.FaDollarSign />,
             cName: 'nav-text',
             show: !isHrManager
         }
@@ -63,7 +63,7 @@ const SideNav = (props) => {
         {
             title: 'Create Rate',
             path: '/createrate',
-            icon: <FaIcons.FaCalendarAlt />,
+            icon: <FaIcons.FaWrench />,
             cName: 'nav-text',
             show: isHrManager
         }
