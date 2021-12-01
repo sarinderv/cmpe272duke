@@ -33,7 +33,7 @@ export default function ViewTimesheet() {
       if (weeks) {
         let rows = JSON.parse(weeks);
         setRows(rows);
-        rowid = rows.map((e) => e.id).reduce((p, c) => {return c > p ? c : p});
+        rowid = rows.map((e) => e.id).reduce((p, c) => { return c > p ? c : p });
         console.log('starting rowid: ', rowid);
       }
       setTimesheet(apiData.data.getTimesheet);
@@ -152,9 +152,10 @@ export default function ViewTimesheet() {
     return (
       <div class="timesheet">
         {errorMsg}
-        <Button variant="primary" onClick={() => handleSave()}>Submit Timesheet</Button>
-        <Button variant="warning" onClick={() => handleDelete()}>Delete Timesheet</Button>
-        <br />Click a day to update hours:
+        <Button variant="primary" onClick={() => handleSave()}>Submit</Button>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <Button variant="danger" onClick={() => handleDelete()}>Delete</Button>
+        <br /><br />Click a cell to update it:
         <BootstrapTable
           keyField="id"
           data={rows}
