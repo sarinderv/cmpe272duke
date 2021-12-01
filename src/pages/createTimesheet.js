@@ -1,100 +1,157 @@
-import { Auth } from 'aws-amplify';
 import React, { useState, useEffect } from 'react';
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 import { useHistory } from "react-router-dom";
-import { useFormFields } from "../lib/hooksLib";
-import { API } from 'aws-amplify';
-// import "./CreatePayroll.css";
+import { API, Auth } from 'aws-amplify';
+import "./Timesheet.css";
 import { createTimesheet } from '../graphql/mutations';
+import BootstrapTable from 'react-bootstrap-table-next';
+import cellEditFactory from 'react-bootstrap-table2-editor';
+import { Type } from 'react-bootstrap-table2-editor';
+import { Alert, Button } from "react-bootstrap";
+
+var id = 0;
 
 export default function CreateTimesheet() {
-    const [adminRole, setAdminRole] = useState(false);
-    const [userData, setUserData] = useState({ payload: { username: '' } });
-    const [errorMessages, setErrorMessages] = useState([]);
-    const [fields, handleFieldChange] = useFormFields({
-        employeeId: "",
-        hours: "",
-        fillDate: ""
-    });
-    const history = useHistory();
-    
-    useEffect(() => {
-        fetchUserData();
-        }, []);
+  const [rows, setRows] = useState([]);
+  const [error, setError] = useState(false);
+  const [userData, setUserData] = useState({ payload: { username: '' } });
+  const history = useHistory();
 
-    async function fetchUserData() {
-        await Auth.currentAuthenticatedUser()
-        .then((userSession) => {
-            console.log("userData: ", userSession);
-            setUserData(userSession.signInUserSession.accessToken);
-        })
-        .catch((e) => console.log("Not signed in", e));
-    }
+  useEffect(() => {
+    addNewRow();
+  }, []);
 
-    function validateForm() {
-        try {
-        return (
-            fields.employeeId.length > 0 &&
-            fields.hours.length > 0 &&
-            fields.fillDate.length > 0 
-        );
-        } catch (e) {
-        return false;
+
+  useEffect(() => {
+    fetchUserData();
+  }, []);
+
+  async function fetchUserData() {
+    await Auth.currentAuthenticatedUser()
+      .then((userSession) => {
+        console.log("userData: ", userSession);
+        setUserData(userSession.signInUserSession.accessToken);
+      })
+      .catch((e) => console.log("Not signed in", e));
+  }
+
+  async function handleSave() {
+    try {
+      let weeklyHours = (prev, week) => {return prev + week.mon + week.tue + week.wed + week.thu + week.fri + week.sat + week.sun};
+      let hours = rows.reduce(weeklyHours, 0);
+      let timesheet = {
+        id: getNewTimesheetId(),
+        fillDate: new Date(),
+        hours: hours,
+        //weeks: rows
+      };
+      console.log(timesheet);
+      await API.graphql({
+        query: createTimesheet, variables: {
+          input: timesheet
         }
-    }
-    
-    async function handleSubmit(event) {
-        event.preventDefault();
-        console.log("here")
-        console.log("userData.payload.username",userData.payload.username)
-        console.log(fields.hours)
-        console.log(fields.fillDate)
-        try {
-        await API.graphql({ query: createTimesheet, variables: { input: {hours: fields.hours, fillDate: fields.fillDate, id: userData.payload.username, employeeID: userData.payload.username} } });
-            console.log("Success")
+      });
+      history.push("/timesheets");
     } catch (e) {
-        console.error('error with timesheet', e);
-        setErrorMessages(e.errors);
-        }
-        history.push("/timesheet");
+      console.error('error creating Timesheet', e);
+      setError(e.errors[0].message);
     }
-    function renderForm() {
-        return (
-        <div>
-            {/* <RenderListPatientButton /> */}
-        <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="employeeId" size="lg">
-            <Form.Label>Employee Id</Form.Label>
-            <Form.Control
-                type="text"
-                value={fields.employeeId}
-                onChange={handleFieldChange}
-            />
-            </Form.Group>
-            <Form.Group controlId="hours" size="lg">
-            <Form.Label>Hours of work</Form.Label>
-            <Form.Control
-                type="text"
-                value={fields.hours}
-                onChange={handleFieldChange}
-            />
-            </Form.Group>
-            <Form.Group controlId="fillDate" size="lg">
-            <Form.Label>Date</Form.Label>
-            <Form.Control
-                type="date"
-                value={fields.fillDate}
-                onChange={handleFieldChange}
-            />
-            </Form.Group>
-            <Button block size="lg" type="submit" disabled={!validateForm()}>
-            Create
-            </Button>
-        </Form>
-        </div>
-        );
+  }
+
+  function getNewTimesheetId() {
+    return userData.payload.username + "-" + Math.floor(Math.random() * 1000);
+  }
+
+  const columns = [{
+    dataField: 'task',
+    text: 'Task'
+  }, {
+    dataField: 'week',
+    text: 'Week/Date',
+    editor: {
+      type: Type.DATE,
     }
-    
-    return <div className="createtimesheet"> <h1>Create Timesheet</h1> {renderForm()} </div>;
+  }, {
+    dataField: 'mon',
+    text: 'Monday',
+    type: 'number',
+    validator: validNumber
+  }, {
+    dataField: 'tue',
+    text: 'Tuesday',
+    type: 'number',
+    validator: validNumber
+  }, {
+    dataField: 'wed',
+    text: 'Wednesday',
+    type: 'number',
+    validator: validNumber
+  }, {
+    dataField: 'thu',
+    text: 'Thursday',
+    type: 'number',
+    validator: validNumber
+  }, {
+    dataField: 'fri',
+    text: 'Friday',
+    type: 'number',
+    validator: validNumber
+  }, {
+    dataField: 'sat',
+    text: 'Saturday',
+    type: 'number',
+    validator: validNumber
+  }, {
+    dataField: 'sun',
+    text: 'Sunday',
+    type: 'number',
+    validator: validNumber
+  }];
+
+  function validNumber(newVal, row, column) {
+    if (isNaN(newVal))
+      return {
+        valid: false,
+        message: 'invalid'
+      }
+    else {
+      return true;
+    }
+  }
+
+  function addNewRow() {
+    let newRow = { id: ++id, task: '', week: '', mon: 0, tue: 0, wed: 0, thu: 0, fri: 0, sat: 0, sun: 0 };
+    console.log('adding', newRow);
+    setRows([...rows, newRow]);
+  }
+
+  function render() {
+    let errorMsg;
+    if (error) {
+      errorMsg = <Alert variant="danger" onClose={() => setError(false)} dismissible>
+        <p> {error} </p>
+      </Alert>
+    }
+    else {
+      errorMsg = ''
+    }
+    console.log(rows);
+    const handleClick = () => addNewRow();
+    const handleSubmit = () => handleSave();
+    return (
+      <div class="timesheet">
+        {errorMsg}
+        <Button variant="primary" onClick={handleSubmit}>Submit Timesheet</Button>
+        <br />Click a day to add hours:
+        <BootstrapTable
+          keyField="id"
+          data={rows}
+          columns={columns}
+          cellEdit={cellEditFactory({ mode: 'click', blurToSave: 'true'})}
+        />
+        <Button variant="secondary" onClick={handleClick}>Add row</Button>
+      </div>
+    );
+  }
+
+  return <div className="timesheet"> <h2>Create Timesheet</h2>{render()} </div>;
 }
