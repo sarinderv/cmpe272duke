@@ -325,6 +325,7 @@ export const createTimesheet = /* GraphQL */ `
       id
       hours
       fillDate
+      weeks
       createdAt
       updatedAt
     }
@@ -339,6 +340,7 @@ export const updateTimesheet = /* GraphQL */ `
       id
       hours
       fillDate
+      weeks
       createdAt
       updatedAt
     }
@@ -353,6 +355,7 @@ export const deleteTimesheet = /* GraphQL */ `
       id
       hours
       fillDate
+      weeks
       createdAt
       updatedAt
     }

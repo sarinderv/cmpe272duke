@@ -44,18 +44,7 @@ type Employee @model {
 
 type Timesheet @model {
     id: ID!
-    hours: Int
+    hours: Float
     fillDate: AWSDateTime!
-    weeks: [Week]
-}
-
-type Week @model {
-  week: AWSDate!
-  mon: Float
-  tue: Float
-  wed: Float
-  thu: Float
-  fri: Float
-  sat: Float
-  sun: Float
+    weeks: AWSJSON
 }

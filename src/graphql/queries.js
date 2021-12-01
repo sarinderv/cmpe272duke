@@ -220,6 +220,7 @@ export const getTimesheet = /* GraphQL */ `
       id
       hours
       fillDate
+      weeks
       createdAt
       updatedAt
     }
@@ -236,6 +237,7 @@ export const listTimesheets = /* GraphQL */ `
         id
         hours
         fillDate
+        weeks
         createdAt
         updatedAt
       }
