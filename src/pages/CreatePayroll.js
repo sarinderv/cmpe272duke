@@ -12,6 +12,8 @@ export default function CreatePayroll() {
   const [adminRole, setAdminRole] = useState(false);
     const [userData, setUserData] = useState({ payload: { username: '' } });
     const [errorMessages, setErrorMessages] = useState([]);
+    let grossSalary=0;
+    let netSalary = 0;
     const [fields, handleFieldChange] = useFormFields({
       employeeId: "",
       tax: "",
@@ -55,11 +57,15 @@ export default function CreatePayroll() {
         return false;
       }
     }
+
+
   
     async function handleSubmit(event) {
       event.preventDefault();
       try {
-        await API.graphql({ query: createPayroll, variables: { input: {employeeId: fields.employeeId, providentFund: fields.providentFund, id: userData.payload.username, basicSalary: fields.basicSalary, allowance: fields.allowance, tax: fields.tax,
+
+        await API.graphql({ query: createPayroll, variables: { input: {employeeId: fields.employeeId, providentFund: fields.providentFund, id: userData.payload.username+"_"+Math.random().toString().replace("0.", "")
+        , basicSalary: fields.basicSalary, allowance: fields.allowance, tax: fields.tax,
             month: fields.month, totalHours: fields.totalHours, grossSalary: fields.grossSalary, netSalary: fields.netSalary} } });
       } catch (e) {
         console.error('error creating payroll', e);
@@ -68,6 +74,7 @@ export default function CreatePayroll() {
       history.push("/payroll");
     }
   
+
     function renderForm() {
       return (
         <div>

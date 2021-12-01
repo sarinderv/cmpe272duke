@@ -11,6 +11,8 @@ import CreatePayroll from './pages/CreatePayroll';
 import EmployeeNotFound from './pages/EmployeeNotFound';
 import Employee from './pages/Employee';
 import EmployeeHR from './pages/EmployeeHr';
+import MyPayroll from './pages/MyPayroll';
+import CreateRate from './pages/CreateRate';
 
 function App() {
 
@@ -74,6 +76,8 @@ function App() {
           <Route path='/employeenotfound' component={EmployeeNotFound} />
           <Route path='/employee' component={Employee} />
           <Route path='/employeehr' component={EmployeeHR} />
+          <Route path='/mypayroll' component={MyPayroll} />
+          <Route path='/createrate' component={CreateRate} />
         </Switch>
       </Router>
 

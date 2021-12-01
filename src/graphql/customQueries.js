@@ -55,3 +55,29 @@ query listEmployeesByHrManager($hrManagerId: ID!) {
     }
   }
 `;
+
+export const listPayrollsByEmployee = /* GraphQL */ `
+query listPayrollsByEmployee($employeeId: ID!) {
+  listPayrolls(filter: {employeeId: {eq: $employeeId}}) {
+    items {
+      allowance
+      basicSalary
+      createdAt
+      employeeId
+      employee {
+        firstName
+        lastName
+      }
+      grossSalary
+      month
+      netSalary
+      providentFund
+      tax
+      totalHours
+      id
+      updatedAt
+    }
+    nextToken
+  }
+}
+`;

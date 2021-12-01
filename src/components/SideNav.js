@@ -43,6 +43,20 @@ const SideNav = (props) => {
             icon: <FaIcons.FaCalendarAlt />,
             cName: 'nav-text'
         }
+        ,
+        {
+            title: 'My Payroll',
+            path: '/mypayroll',
+            icon: <FaIcons.FaCalendarAlt />,
+            cName: 'nav-text'
+        }
+        ,
+        {
+            title: 'Create Rate',
+            path: '/createrate',
+            icon: <FaIcons.FaCalendarAlt />,
+            cName: 'nav-text'
+        }
     ];
 
     const [sidebar, setSidebar] = useState(false);
