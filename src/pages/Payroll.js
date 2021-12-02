@@ -8,6 +8,7 @@ import Modal from "react-bootstrap/Modal";
 import {listPayrollsByEmployee,listEmployeesByManager} from '../graphql/customQueries';
 import { listEmployees,  } from '../graphql/queries';
 import {listEmployeesByHrManager} from '../graphql/customQueries';
+import {deletePayroll} from '../graphql/mutations';
 import {
     Container,
     Row,
@@ -130,6 +131,23 @@ export default function Payroll() {
       
       }
 
+
+      async function deletePayrollInfo(id)
+      {
+        try
+        {
+          const newPayrollArray = payrolls.filter(payroll => payroll.id !== id);
+          setPayrolls(newPayrollArray);
+          await API.graphql({ query: deletePayroll, variables: { input: { id : id}}});
+        } catch(e)
+        {
+          console.error('error deleting payroll', e);
+          setErrorMessages(e.errors);
+        }
+        alert("Payroll Deleted!");
+  
+      }
+
     return (
 
 
@@ -189,6 +207,8 @@ export default function Payroll() {
           <th>Month</th>
           <th>Gross Salary</th>
           <th>Net Salary</th>
+          <th>Action</th>
+
 
         </tr>
       </thead>
@@ -207,6 +227,9 @@ export default function Payroll() {
               <td>{payroll.month}</td>
               <td>{payroll.grossSalary}</td>
               <td>{payroll.netSalary}</td>
+              <td>
+                  <Button variant="danger" size="sm" onClick={() => deletePayrollInfo(payroll.id)}>Delete</Button>
+              </td>
                        
             </tr>
           ))
