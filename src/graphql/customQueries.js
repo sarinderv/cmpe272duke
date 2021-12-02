@@ -1,3 +1,14 @@
+export const listEmployeeIdsByManager = /* GraphQL */ `
+query listEmployeeIdsByManager($managerId: ID!) {
+    listEmployees(filter: {managerId: {eq: $managerId}}) {
+    items {
+        id
+      }
+      nextToken
+    }
+  }
+`;
+
 export const listEmployeesByManager = /* GraphQL */ `
 query listEmployeesByManager($managerId: ID!) {
     listEmployees(filter: {managerId: {eq: $managerId}}) {

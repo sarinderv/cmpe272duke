@@ -150,7 +150,7 @@ export default function ViewTimesheet() {
       errorMsg = ''
     }
     return (
-      <div class="timesheet">
+      <div className="timesheet">
         {errorMsg}
         <Button variant="primary" onClick={() => handleSave()}>Submit</Button>
         &nbsp;&nbsp;&nbsp;&nbsp;

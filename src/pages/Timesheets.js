@@ -2,6 +2,7 @@ import { API, Auth } from 'aws-amplify';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from "react-router-dom";
 import { listTimesheets } from '../graphql/queries';
+import { listEmployeeIdsByManager } from '../graphql/customQueries';
 import {
     Container,
     Row,
@@ -12,6 +13,7 @@ import {
 export default function Timesheet() {
     const [rows, setRows] = useState([]);
     const [userData, setUserData] = useState({ payload: { username: '' } });
+    const [employeesByManager, setEmployeesByManager] = useState([]);
     const history = useHistory();
 
     useEffect(() => {
@@ -24,6 +26,7 @@ export default function Timesheet() {
             .then((userSession) => {
                 console.log("userData: ", userSession);
                 setUserData(userSession.signInUserSession.accessToken);
+                fetchEmployeesByManager(userSession.signInUserSession.accessToken.payload.username);
             })
             .catch((e) => console.log("Not signed in", e));
     }
@@ -51,9 +54,20 @@ export default function Timesheet() {
         }
     }
 
+    async function fetchEmployeesByManager(userName) {
+        try {
+            const apiData = await API.graphql({ query: listEmployeeIdsByManager, variables: { managerId: userName } });
+            setEmployeesByManager(apiData.data.listEmployees.items.map((e) => e.id));
+        } catch (e) {
+            console.error('error fetching employees', e);
+            alert(e.errors ? e.errors[0].message : e);
+        }
+    }
+
     const handleSubmit = () => history.push("/createtimesheet");
     const handleOpen = (id) => { console.log(id); history.push("/viewtimesheet/" + id); };
     const comparator = (a, b) => { return a.updatedAt < b.updatedAt ? -1 : 1 };
+    const filter = (e) => { return !isManager() || employeesByManager.includes(e.owner) || e.owner === userData.payload.username };
 
     return (
         <Container>
@@ -72,7 +86,7 @@ export default function Timesheet() {
                         </tr>
                     </thead>
                     <tbody>
-                        {rows.sort(comparator).map(row => (
+                        {rows.sort(comparator).filter(filter).map(row => (
                             <tr key={row.id}>
                                 {isAdmin() || isManager() || isHrManager() ? <td>{row.owner}</td> : ""}
                                 <td>{row.hours}</td>
