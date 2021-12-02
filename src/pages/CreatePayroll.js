@@ -7,7 +7,7 @@ import { useFormFields } from "../lib/hooksLib";
 import { API } from 'aws-amplify';
 import "./CreatePayroll.css";
 import { createPayroll } from '../graphql/mutations';
-import {listEmployeesByManager} from '../graphql/customQueries';
+import {listEmployeesByHrManager} from '../graphql/customQueries';
 
 export default function CreatePayroll() {
   const [adminRole, setAdminRole] = useState(false);
@@ -44,7 +44,7 @@ export default function CreatePayroll() {
 
     async function fetchEmployeesByManager(userName) {
       try {
-       const apiData = await API.graphql({ query: listEmployeesByManager, variables: { managerId: userName } });
+       const apiData = await API.graphql({ query: listEmployeesByHrManager, variables: { hrManagerId: userName } });
        setEmployeesByManager(apiData.data.listEmployees.items);
       } catch (e) {
           console.error('error fetching employees', e);

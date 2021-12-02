@@ -7,6 +7,7 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import {listPayrollsByEmployee,listEmployeesByManager} from '../graphql/customQueries';
 import { listEmployees,  } from '../graphql/queries';
+import {listEmployeesByHrManager} from '../graphql/customQueries';
 import {
     Container,
     Row,
@@ -40,8 +41,8 @@ export default function Payroll() {
         await Auth.currentAuthenticatedUser()
           .then((userSession) => {
             console.log("userData: ", userSession);
-            fetchEmployeesByManager(userSession.signInUserSession.accessToken.payload.username);
             setUserData(userSession.signInUserSession.accessToken);
+            fetchEmployeesByManager(userSession.signInUserSession.accessToken.payload.username, userSession.signInUserSession.accessToken.payload['cognito:groups'][0]);
           })
           .catch((e) => console.log("Not signed in", e));
       }
@@ -57,15 +58,21 @@ export default function Payroll() {
         }
       }
 
-      async function fetchEmployeesByManager(userName) {
+      async function fetchEmployeesByManager(userName, userRole) {
         try {
-         const apiData = await API.graphql({ query: listEmployeesByManager, variables: { managerId: userName } });
-         setEmployeesByManager(apiData.data.listEmployees.items);
+          if (userRole === "HrManager") {
+            const apiData = await API.graphql({ query: listEmployeesByHrManager, variables: { hrManagerId: userName } });
+            setEmployeesByManager(apiData.data.listEmployees.items);
+          } else if (userRole === "Manager") {
+            const apiData = await API.graphql({ query: listEmployeesByManager, variables: { managerId: userName } });
+            setEmployeesByManager(apiData.data.listEmployees.items);
+          }
         } catch (e) {
             console.error('error fetching employees', e);
             setErrorMessages(e.errors);
         }
       }
+
     async function list() {
         try {
             const apiData = await API.graphql({ query: listPayrolls });
@@ -95,7 +102,6 @@ export default function Payroll() {
         setSelectedEmployee(employee);
         setPayrollModalShow(true);
       }
-
 
     async function handleSubmit(event) {
         event.preventDefault();
