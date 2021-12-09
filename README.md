@@ -1,5 +1,5 @@
 # Team Duke - Human Resources Management SaaS app - CMPE 272
-# Team Members: Sakshi Jain, Sarinder Virk, Serdar Demirci, Ashika Anand Babu
+## Team Members: Sakshi Jain, Sarinder Virk, Serdar Demirci, Ashika Anand Babu
 
 # Project Creation
 This project frontend was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
